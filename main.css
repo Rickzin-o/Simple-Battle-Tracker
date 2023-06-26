@@ -39,6 +39,10 @@ button:hover {
     opacity: 0.9;
 }
 
+#add-button {
+    background-color: #6fff6f;
+}
+
 #background {
     height: 60vh;
 }
