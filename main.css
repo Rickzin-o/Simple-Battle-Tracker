@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+:root {
+    --cor-texto: #030214;
+}
 
 body {
     background-color: #000000;
@@ -9,7 +13,8 @@ body {
     background-attachment: fixed;
     align-content: center;
     text-align: center;
-    overflow-y: hidden;
+    font-family: "Inter";
+    color: var(--cor-texto);
 }
 
 footer {
@@ -17,6 +22,21 @@ footer {
     height: 20vh;
     background-color: white;
     align-items: center;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 0.25rem;
+
+    color: var(--cor-texto);
+    background-color: #ff6f6f;
+
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
 }
 
 #background {
@@ -28,6 +48,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
 }
 
 .character-container {
