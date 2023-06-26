@@ -4,5 +4,10 @@ function adicionarCriatura(footerIndex) {
     let vidaCriatura = prompt("Insira HP da criatura.")
     let armaduraCriatura = prompt("Insira CA da criatura.")
 
-    footer.innerHTML += `<div class="creature-info"><label>${nomeCriatura}</label><input value="${vidaCriatura}" placeholder="HP" type="number"><label>CA ${armaduraCriatura}</label></div>`
+    footer.innerHTML += `<div class="creature-info"><label>${nomeCriatura}</label><input value="${vidaCriatura}" placeholder="HP" type="number" min="0" max="${vidaCriatura}"><label>CA ${armaduraCriatura}</label></div>`
+}
+
+function removerCriatura(footerIndex) {
+    let footer = document.getElementById(`footer${footerIndex}`)
+    footer.lastChild.remove()
 }
