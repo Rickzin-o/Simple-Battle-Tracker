@@ -10,30 +10,10 @@
 <body>
     <footer id="enemies">
         <div class="button-container">
-            <button id="add-button">Adicionar</button>
-            <button id="remove-button">Remover</button>
+            <button id="add-button" onclick="adicionarCriatura(1)">Adicionar</button>
+            <button id="remove-button" onclick="removerCriatura(1)">Remover</button>
         </div>
-        <div class="character-container">
-            <div class="creature-info">
-                <label>Nome</label>
-                <input placeholder="HP" type="number">
-                <label>CA 00</label>
-            </div>
-            <div class="creature-info">
-                <label>Nome</label>
-                <input placeholder="HP" type="number">
-                <label>CA 00</label>
-            </div>
-            <div class="creature-info">
-                <label>Nome</label>
-                <input placeholder="HP" type="number">
-                <label>CA 00</label>
-            </div>
-            <div class="creature-info">
-                <label>Nome</label>
-                <input placeholder="HP" type="number">
-                <label>CA 00</label>
-            </div>
+        <div class="character-container" id="footer1">
             <div class="creature-info">
                 <label>Nome</label>
                 <input placeholder="HP" type="number">
@@ -45,10 +25,10 @@
     </div>
     <footer id="allies">
         <div class="button-container">
-            <button id="add-button">Adicionar</button>
-            <button id="remove-button">Remover</button>
+            <button id="add-button" onclick="adicionarCriatura(2)">Adicionar</button>
+            <button id="remove-button" onclick="removerCriatura(2)">Remover</button>
         </div>
-        <div class="character-container">
+        <div class="character-container" id="footer2">
             <div class="creature-info">
                 <label>Nome</label>
                 <div id="hp-bar"></div>
