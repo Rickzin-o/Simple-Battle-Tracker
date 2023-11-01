@@ -1,15 +1,17 @@
 function adicionarCriatura(footerIndex) {
     let footer = document.getElementById(`footer${footerIndex}`)
     
-    let nomeCriatura = prompt("Insira nome da criatura.")
+    let nomeCriatura = document.getElementById("input-name").value
     
     if (nomeCriatura != "" && nomeCriatura != null) {
-    let vidaCriatura = prompt("Insira HP da criatura.")
-    let armaduraCriatura = prompt("Insira CA da criatura.")
+    let vidaCriatura = document.getElementById("input-hp").value
+    let armaduraCriatura = document.getElementById("input-ca").value
     
-    if (vidaCriatura != "" && armaduraCriatura != "") {
-        footer.innerHTML += `<div class="creature-info"><label>${nomeCriatura}</label><input value="${vidaCriatura}" placeholder="HP" type="number" min="0" max="${vidaCriatura}"><label>CA ${armaduraCriatura}</label></div>`
-    }
+        if (vidaCriatura != "" && armaduraCriatura != "") {
+            footer.innerHTML += `<div class="creature-info"><label>${nomeCriatura}</label><input value="${vidaCriatura}" placeholder="HP" type="number" min="0" max="${vidaCriatura}"><label>CA ${armaduraCriatura}</label></div>`
+        }
+    } else {
+        alert("Por favor, insira um nome de criatura válido!")
     }
 }
 

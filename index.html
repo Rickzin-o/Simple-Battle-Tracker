@@ -10,8 +10,7 @@
 <body>
     <footer id="enemies">
         <div class="button-container">
-            <button id="add-button" onclick="adicionarCriatura(1)">Adicionar</button>
-            <button id="remove-button" onclick="removerCriatura(1)">Remover</button>
+            <button id="remove-button" onclick="removerCriatura(1)">Remover última criatura</button>
         </div>
         <div class="character-container" id="footer1">
             <div class="creature-info">
@@ -21,13 +20,20 @@
             </div>
         </div>
     </footer>
-    <div id="background">
+    <div id="functions">
+        <div id="add-creature">
+            <div id="info-inputs">
+                <input placeholder="Nome da criatura" type="text" id="input-name">
+                <input placeholder="Max HP" type="number" id="input-hp">
+                <input placeholder="Armor Class" type="number" id="input-ca">
+            </div>
+            <div id="info-buttons">
+                <button id="add-button" onclick="adicionarCriatura(1)">Adicionar inimigo</button>
+                <button id="add-button" onclick="adicionarCriatura(2)">Adicionar aliado</button>
+            </div>
+        </div>
     </div>
     <footer id="allies">
-        <div class="button-container">
-            <button id="add-button" onclick="adicionarCriatura(2)">Adicionar</button>
-            <button id="remove-button" onclick="removerCriatura(2)">Remover</button>
-        </div>
         <div class="character-container" id="footer2">
             <div class="creature-info">
                 <label>Nome</label>
@@ -35,6 +41,9 @@
                 <input placeholder="HP" type="number" min="0" max="1000">
                 <label>CA 00</label>
             </div>
+        </div>
+        <div class="button-container">
+            <button id="remove-button" onclick="removerCriatura(2)">Remover última criatura</button>
         </div>
     </footer>
     <script src='main.js'></script>

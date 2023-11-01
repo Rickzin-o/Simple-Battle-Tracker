@@ -43,8 +43,11 @@ button:hover {
     background-color: #6fff6f;
 }
 
-#background {
-    height: 60vh;
+#functions {
+    background-color: gray;
+    margin-bottom: 14vh;
+    margin-top: 14vh;
+    height: 30vh;
 }
 
 .button-container {
