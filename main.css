@@ -20,7 +20,7 @@ body {
 footer {
     width: 100%;
     height: 20vh;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.900);
     align-items: center;
 }
 
@@ -36,7 +36,7 @@ button {
 }
 
 button:hover {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 #add-button {
@@ -44,11 +44,32 @@ button:hover {
 }
 
 #functions {
-    background-color: gray;
-    margin-bottom: 14vh;
-    margin-top: 14vh;
+    background-color: rgb(255, 255, 255, 0.900);
+    margin: 14vh auto;
     height: 30vh;
+    max-width: 50%;
 }
+
+#add-creature {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    transform: translateY(25%);
+    align-items: center;
+}
+
+#functions div {
+    width: 60%;
+}
+
+#functions input {
+    padding: 4px;
+    border-radius: 1rem;
+    border-width: 1px;
+    text-align: center;
+    margin: auto;
+}
+
 
 .button-container {
     height: 25%;
