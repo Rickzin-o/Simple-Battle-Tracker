@@ -1,0 +1,157 @@
+/* Redefinição de estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Corpo da página */
+body {
+    /* background-image: url("https://i.pinimg.com/originals/35/64/76/3564767abfcd563267964523de03f571.jpg"); */
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Barra lateral */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-right: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulários */
+.sidebar h2 {
+    margin: 0 0 20px 0;
+    color: #333;
+}
+
+.sidebar form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sidebar label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+.sidebar input,
+.sidebar button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sidebar button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar button:hover {
+    background-color: #45a049;
+}
+
+/* Conteúdo principal */
+#main-content {
+    flex: 1;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Seção de fundo */
+#background-section {
+    flex: 0.95;
+    background-image: url("https://i.pinimg.com/originals/35/64/76/3564767abfcd563267964523de03f571.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+/* Listas de inimigos e jogadores */
+#enemy-list,
+#player-list {
+    display: flex;
+    max-width: 70vw;
+    gap: 2rem;
+    justify-content: space-around;
+    align-items: center;
+    overflow-x: auto;
+
+    max-height: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.enemy-data,
+.player-data {
+    margin: 0 auto;
+    display: flex;
+    min-width: 15vw;
+    flex-direction: column;
+    
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+}
+
+.enemy-data #name,
+.player-data #name {
+    flex: 1;
+}
+
+.enemy-data #hp,
+.player-data #hp {
+    width: 80px;
+    text-align: center;
+}
+
+.enemy-data #ac,
+.player-data #ac {
+    width: 60px;
+    text-align: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .main-content {
+        flex: none;
+    }
+
+    .player-list, .enemy-list {
+        max-width: 100%;
+    }
+}

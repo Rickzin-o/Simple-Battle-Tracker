@@ -1,52 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>RPG</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Battle Board</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <footer id="enemies">
-        <div class="button-container">
-            <button id="remove-button" onclick="removerCriatura(1)">Remover última criatura</button>
-        </div>
-        <div class="character-container" id="footer1">
-            <div class="creature-info">
-                <label>Nome</label>
-                <input placeholder="HP" type="number" min="0" max="1000">
-                <label>CA 00</label>
+    <div class="container">
+        <div class="sidebar">
+            <div class="enemy-form">
+                <h2>Inimigos</h2>
+                <form id="enemy-form" autocomplete="off">
+                    <label for="enemy-name">Nome:</label>
+                    <input type="text" id="enemy-name" name="enemy-name" required>
+                    <label for="enemy-hp">HP Máximo:</label>
+                    <input type="number" id="enemy-hp" name="enemy-hp" min=0 max=1000 required>
+                    <label for="enemy-ac">CA:</label>
+                    <input type="number" id="enemy-ac" name="enemy-ac" min=0 max=100 required>
+                    <button type="submit">Adicionar Inimigo</button>
+                </form>
+                <button onclick="removerCriatura('enemy-list')">Remover Inimigo</button>
+            </div>
+            <div class="player-form">
+                <h2>Jogadores</h2>
+                <form id="player-form">
+                    <label for="player-name">Nome:</label>
+                    <input type="text" id="player-name" name="player-name" required>
+                    <label for="player-hp">HP Máximo:</label>
+                    <input type="number" id="player-hp" name="player-hp" min=0 max=1000 required>
+                    <label for="player-ac">CA:</label>
+                    <input type="number" id="player-ac" name="player-ac" min=0 max=100 required>
+                    <button type="submit">Adicionar Jogador</button>
+                </form>
+                <button onclick="removerCriatura('player-list')">Remover Jogador</button>
             </div>
         </div>
-    </footer>
-    <div id="functions">
-        <div id="add-creature">
-            <div id="info-inputs">
-                <input placeholder="Nome da criatura" type="text" id="input-name">
-                <input placeholder="Max HP" type="number" id="input-hp">
-                <input placeholder="Armor Class" type="number" id="input-ca">
-                <input placeholder="Número de criaturas" type="number" id="input-num">
+        <div id="main-content">
+            <div id="enemy-list">
+                </div>
+            <div id="background-section">
+                <img id="background-image">
             </div>
-            <div id="info-buttons">
-                <button id="add-button" onclick="adicionarCriatura(1)">Adicionar inimigo</button>
-                <button id="add-button" onclick="adicionarCriatura(2)">Adicionar aliado</button>
-            </div>
+            <div id="player-list">
+                </div>
         </div>
     </div>
-    <footer id="allies">
-        <div class="character-container" id="footer2">
-            <div class="creature-info">
-                <label>Nome</label>
-                <div id="hp-bar"></div>
-                <input placeholder="HP" type="number" min="0" max="1000">
-                <label>CA 00</label>
-            </div>
-        </div>
-        <div class="button-container">
-            <button id="remove-button" onclick="removerCriatura(2)">Remover última criatura</button>
-        </div>
-    </footer>
-    <script src='main.js'></script>
+    <script src="main.js"></script>
 </body>
 </html>

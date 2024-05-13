@@ -1,0 +1,116 @@
+/* Estilo geral */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F2F2F2;
+}
+
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #FF5733;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 300px;
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.sidebar h2 {
+    color: #FF5733;
+    margin-bottom: 10px;
+}
+
+.sidebar form {
+    margin-bottom: 20px;
+}
+
+.sidebar label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.sidebar input[type="text"],
+.sidebar input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+}
+
+.sidebar button {
+    background-color: #FF5733;
+    color: #FFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Conteúdo principal */
+.main-content {
+    flex: 1;
+}
+
+/* Imagem de fundo */
+.background-section {
+    position: relative;
+    height: 300px; /* Ajuste a altura conforme desejado */
+    background-image: url('background.jpg'); /* Substitua por URL da sua imagem */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* Listas de inimigos e jogadores */
+.enemy-list,
+.player-list {
+    height: 300px; /* Ajuste a altura conforme desejado */
+    overflow-y: auto; /* Adiciona scroll vertical */
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #FFF;
+}
+
+.enemy-list h3,
+.player-list h3 {
+    color: #FF5733;
+    margin-bottom: 10px;
+}
+
+.enemy-item,
+.player-item {
+    border: 1px solid #DDD;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

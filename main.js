@@ -1,34 +1,63 @@
-function adicionarCriatura(footerIndex) {
-    let footer = document.getElementById(`footer${footerIndex}`)
-    
-    let nomeCriatura = document.getElementById("input-name").value
-    
-    if (nomeCriatura != "" && nomeCriatura != null) {
-    let vidaCriatura = document.getElementById("input-hp").value
-    let armaduraCriatura = document.getElementById("input-ca").value
-    
-        if (vidaCriatura != "" && armaduraCriatura != "") {
-            let numeroDeCriaturas = Number(document.getElementById("input-num").value)
-            
-            if (numeroDeCriaturas > 1){
-                for (let i = 0; i < numeroDeCriaturas; i++) {
-                    footer.innerHTML += `<div class="creature-info"><label>${nomeCriatura}</label><input value="${vidaCriatura}" placeholder="HP" type="number" min="0" max="${vidaCriatura}"><label>CA ${armaduraCriatura}</label></div>`
-                }
-            } else{
-                footer.innerHTML += `<div class="creature-info"><label>${nomeCriatura}</label><input value="${vidaCriatura}" placeholder="HP" type="number" min="0" max="${vidaCriatura}"><label>CA ${armaduraCriatura}</label></div>`
-            }
+// Constante dos formulários e das listas
+const enemyForm = document.getElementById('enemy-form');
+const playerForm = document.getElementById('player-form');
+const enemyList = document.querySelector('#enemy-list');
+const playerList = document.querySelector('#player-list');
 
-            document.getElementById("input-name").value = ""
-            document.getElementById("input-hp").value = ""
-            document.getElementById("input-ca").value = ""
-            document.getElementById("input-num").value = ""
-        }
-    } else {
-        alert("Por favor, insira um nome de criatura válido!")
-    }
+// Pega as informações do formulário de inimigos ao clicar no botão
+enemyForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const enemyName = document.getElementById('enemy-name').value;
+    const enemyHP = parseInt(document.getElementById('enemy-hp').value);
+    const enemyAC = parseInt(document.getElementById('enemy-ac').value);
+
+    addEnemy(enemyName, enemyHP, enemyAC);
+    this.reset(); // Limpa o formulário
+});
+
+// Pega as informações do formulário de jogadores ao clicar no botão
+playerForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const playerName = document.getElementById('player-name').value;
+    const playerHP = parseInt(document.getElementById('player-hp').value);
+    const playerAC = parseInt(document.getElementById('player-ac').value);
+
+    addPlayer(playerName, playerHP, playerAC);
+    this.reset(); // Limpa o formulário
+});
+
+// Adiciona as informações de um inimigo na lista
+function addEnemy(name, hp, ac) {
+    const enemyItem = document.createElement('div');
+    enemyItem.classList.add('enemy-data');
+
+    enemyItem.innerHTML = `
+    <span id="name">${name}</span>
+    <span id="hp">HP: ${hp}</span>
+    <span id="ca">CA: ${ac}</span>
+    `;
+
+    enemyList.appendChild(enemyItem);
 }
 
-function removerCriatura(footerIndex) {
-    let footer = document.getElementById(`footer${footerIndex}`)
-    footer.lastChild.remove()
+// Adiciona as informações de um jogador na lista
+function addPlayer(name, hp, ac) {
+    const playerItem = document.createElement('div');
+    playerItem.classList.add('player-data');
+
+    playerItem.innerHTML = `
+    <span id="name">${name}</span>
+    <span id="hp">HP: ${hp}</span>
+    <span id="ca">CA: ${ac}</span>
+    `;
+
+    playerList.appendChild(playerItem);
+}
+
+
+function removerCriatura(listId) {
+    let list = document.getElementById(`${listId}`)
+    list.lastChild.remove()
 }
