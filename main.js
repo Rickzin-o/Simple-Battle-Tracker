@@ -35,7 +35,7 @@ function addEnemy(name, hp, ac) {
 
     enemyItem.innerHTML = `
     <span id="name">${name}</span>
-    <span id="hp">HP: ${hp}</span>
+    <input id="hp" placeholder="HP" type=number value=${hp} min=0 max=${hp}>
     <span id="ca">CA: ${ac}</span>
     `;
 
@@ -49,7 +49,7 @@ function addPlayer(name, hp, ac) {
 
     playerItem.innerHTML = `
     <span id="name">${name}</span>
-    <span id="hp">HP: ${hp}</span>
+    <input id="hp" type=number placeholder="HP" value=${hp} min=0 max=${hp}>
     <span id="ca">CA: ${ac}</span>
     `;
 
