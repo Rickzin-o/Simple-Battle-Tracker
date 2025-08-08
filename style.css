@@ -104,36 +104,59 @@ body {
     background-color: #fff;
 }
 
-.enemy-data,
-.player-data {
+/* Estilos para os cards de criatura */
+.creature-card {
     margin: 0 auto;
     display: flex;
     min-width: 15vw;
     flex-direction: column;
-    
     align-items: center;
+    gap: 8px; /* Adiciona espaço entre os elementos do card */
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     background-color: #f8f8f8;
+    position: relative; /* Para posicionar o botão de remover */
 }
 
-.enemy-data #name,
-.player-data #name {
-    flex: 1;
+.creature-name {
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-.enemy-data #hp,
-.player-data #hp {
+.creature-hp {
     width: 80px;
     text-align: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-.enemy-data #ac,
-.player-data #ac {
+.creature-ac {
     width: 60px;
     text-align: center;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0;
+}
+
+.remove-btn:hover {
+    background-color: #cc0000;
 }
 
 /* Estilos responsivos */

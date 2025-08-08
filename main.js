@@ -1,63 +1,72 @@
-// Constante dos formulários e das listas
+// Seletores de Elementos
 const enemyForm = document.getElementById('enemy-form');
 const playerForm = document.getElementById('player-form');
-const enemyList = document.querySelector('#enemy-list');
-const playerList = document.querySelector('#player-list');
+const enemyList = document.getElementById('enemy-list');
+const playerList = document.getElementById('player-list');
 
-// Pega as informações do formulário de inimigos ao clicar no botão
-enemyForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+/**
+ * Cria o elemento HTML para uma criatura (jogador ou inimigo).
+ * @param {string} name - O nome da criatura.
+ * @param {number} hp - Os pontos de vida máximos da criatura.
+ * @param {number} ac - A classe de armadura da criatura.
+ * @param {string} type - O tipo da criatura ('player' or 'enemy').
+ * @returns {HTMLElement} O elemento div da criatura.
+ */
+function createCreatureElement(name, hp, ac, type) {
+    const creatureElement = document.createElement('div');
+    // Usando uma classe base e uma classe específica de tipo
+    creatureElement.classList.add('creature-card', `${type}-card`);
 
-    const enemyName = document.getElementById('enemy-name').value;
-    const enemyHP = parseInt(document.getElementById('enemy-hp').value);
-    const enemyAC = parseInt(document.getElementById('enemy-ac').value);
-
-    addEnemy(enemyName, enemyHP, enemyAC);
-    this.reset(); // Limpa o formulário
-});
-
-// Pega as informações do formulário de jogadores ao clicar no botão
-playerForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const playerName = document.getElementById('player-name').value;
-    const playerHP = parseInt(document.getElementById('player-hp').value);
-    const playerAC = parseInt(document.getElementById('player-ac').value);
-
-    addPlayer(playerName, playerHP, playerAC);
-    this.reset(); // Limpa o formulário
-});
-
-// Adiciona as informações de um inimigo na lista
-function addEnemy(name, hp, ac) {
-    const enemyItem = document.createElement('div');
-    enemyItem.classList.add('enemy-data');
-
-    enemyItem.innerHTML = `
-    <span id="name">${name}</span>
-    <input id="hp" placeholder="HP" type=number value=${hp} min=0 max=${hp}>
-    <span id="ca">CA: ${ac}</span>
+    // Usando classes em vez de IDs para os elementos internos para evitar duplicatas
+    creatureElement.innerHTML = `
+        <span class="creature-name">${name}</span>
+        <input class="creature-hp" placeholder="HP" type="number" value="${hp}" min="0" max="${hp}">
+        <span class="creature-ac">CA: ${ac}</span>
+        <button class="remove-btn">X</button>
     `;
 
-    enemyList.appendChild(enemyItem);
+    // Adiciona o event listener para o botão de remover
+    creatureElement.querySelector('.remove-btn').addEventListener('click', () => {
+        creatureElement.remove();
+    });
+
+    return creatureElement;
 }
 
-// Adiciona as informações de um jogador na lista
-function addPlayer(name, hp, ac) {
-    const playerItem = document.createElement('div');
-    playerItem.classList.add('player-data');
+/**
+ * Manipula a submissão do formulário para adicionar uma nova criatura.
+ * @param {Event} event - O evento de submissão do formulário.
+ * @param {string} type - O tipo da criatura a ser adicionada ('player' or 'enemy').
+ */
+function handleFormSubmit(event, type) {
+    event.preventDefault();
 
-    playerItem.innerHTML = `
-    <span id="name">${name}</span>
-    <input id="hp" type=number placeholder="HP" value=${hp} min=0 max=${hp}>
-    <span id="ca">CA: ${ac}</span>
-    `;
+    const form = event.target;
+    // Seleciona os inputs pelo atributo 'name' que é único dentro de cada formulário
+    const nameInput = form.querySelector(`input[name="${type}-name"]`);
+    const hpInput = form.querySelector(`input[name="${type}-hp"]`);
+    const acInput = form.querySelector(`input[name="${type}-ac"]`);
 
-    playerList.appendChild(playerItem);
+    const name = nameInput.value;
+    const hp = parseInt(hpInput.value);
+    const ac = parseInt(acInput.value);
+
+    // Validação simples para garantir que os campos não estão vazios
+    if (name && !isNaN(hp) && !isNaN(ac)) {
+        const creatureElement = createCreatureElement(name, hp, ac, type);
+
+        if (type === 'enemy') {
+            enemyList.appendChild(creatureElement);
+        } else {
+            playerList.appendChild(creatureElement);
+        }
+
+        form.reset();
+    }
 }
 
+// Adiciona os event listeners aos formulários, passando o tipo de criatura
+enemyForm.addEventListener('submit', (event) => handleFormSubmit(event, 'enemy'));
+playerForm.addEventListener('submit', (event) => handleFormSubmit(event, 'player'));
 
-function removerCriatura(listId) {
-    let list = document.getElementById(`${listId}`)
-    list.lastChild.remove()
-}
+// A função antiga 'removerCriatura' não é mais necessária, pois a remoção é tratada por card.
