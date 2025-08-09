@@ -15,11 +15,16 @@
     font-family: 'Arial', sans-serif;
 }
 
+html {
+    height: 100%;
+}
+
 /* Corpo da página */
 body {
     /* background-image: url("https://i.pinimg.com/originals/35/64/76/3564767abfcd563267964523de03f571.jpg"); */
     background-color: var(--primary-color);
     color: var(--text-color);
+    height: 100%;
 }
 
 /* Container principal */
@@ -30,6 +35,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    height: 100%;
 }
 
 /* Barra lateral */
@@ -96,7 +102,6 @@ body {
     justify-content: space-between;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 /* Listas de inimigos e jogadores */
