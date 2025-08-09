@@ -15,7 +15,7 @@
                     <label for="enemy-name">Nome:</label>
                     <input type="text" id="enemy-name" name="enemy-name" required>
                     <label for="enemy-hp">HP Máximo:</label>
-                    <input type="number" id="enemy-hp" name="enemy-hp" min=0 max=1000 required>
+                    <input type="number" id="enemy-hp" name="enemy-hp" min=0 max=10000 required>
                     <label for="enemy-ac">CA:</label>
                     <input type="number" id="enemy-ac" name="enemy-ac" min=0 max=100 required>
                     <button type="submit">Adicionar Inimigo</button>
@@ -27,7 +27,7 @@
                     <label for="player-name">Nome:</label>
                     <input type="text" id="player-name" name="player-name" required>
                     <label for="player-hp">HP Máximo:</label>
-                    <input type="number" id="player-hp" name="player-hp" min=0 max=1000 required>
+                    <input type="number" id="player-hp" name="player-hp" min=0 max=10000 required>
                     <label for="player-ac">CA:</label>
                     <input type="number" id="player-ac" name="player-ac" min=0 max=100 required>
                     <button type="submit">Adicionar Jogador</button>
@@ -37,6 +37,9 @@
         <div id="main-content">
             <div id="enemy-list">
                 </div>
+            <div id="background-section">
+                <img id="background-image">
+            </div>
             <div id="player-list">
                 </div>
         </div>
