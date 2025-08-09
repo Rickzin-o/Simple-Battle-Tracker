@@ -8,9 +8,27 @@
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
+        <div id="main-content">
+            <div id="enemy-list">
+            </div>
+            <div id="background-section">
+                 <div id="action-buttons">
+                    <button id="add-enemy-btn" class="modal-trigger">Adicionar Inimigo</button>
+                    <button id="add-player-btn" class="modal-trigger">Adicionar Jogador</button>
+                </div>
+                <img id="background-image">
+            </div>
+            <div id="player-list">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Inimigo -->
+    <div id="enemy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
             <div class="enemy-form">
-                <h2>Inimigos</h2>
+                <h2>Adicionar Inimigo</h2>
                 <form id="enemy-form" autocomplete="off">
                     <label for="enemy-name">Nome:</label>
                     <input type="text" id="enemy-name" name="enemy-name" required>
@@ -18,11 +36,18 @@
                     <input type="number" id="enemy-hp" name="enemy-hp" min=0 max=10000 required>
                     <label for="enemy-ac">CA:</label>
                     <input type="number" id="enemy-ac" name="enemy-ac" min=0 max=100 required>
-                    <button type="submit">Adicionar Inimigo</button>
+                    <button type="submit">Adicionar</button>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Jogador -->
+    <div id="player-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
             <div class="player-form">
-                <h2>Jogadores</h2>
+                <h2>Adicionar Jogador</h2>
                 <form id="player-form">
                     <label for="player-name">Nome:</label>
                     <input type="text" id="player-name" name="player-name" required>
@@ -30,20 +55,12 @@
                     <input type="number" id="player-hp" name="player-hp" min=0 max=10000 required>
                     <label for="player-ac">CA:</label>
                     <input type="number" id="player-ac" name="player-ac" min=0 max=100 required>
-                    <button type="submit">Adicionar Jogador</button>
+                    <button type="submit">Adicionar</button>
                 </form>
             </div>
         </div>
-        <div id="main-content">
-            <div id="enemy-list">
-                </div>
-            <div id="background-section">
-                <img id="background-image">
-            </div>
-            <div id="player-list">
-                </div>
-        </div>
     </div>
+
     <script src="main.js"></script>
 </body>
 </html>
