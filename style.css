@@ -1,9 +1,10 @@
 :root {
-    --primary-color: #030027;
-    --secondary-color: #4A495B  ;
-    --text-color: #e8f1f2;
-    --accent-color: #07484B;
-    --secondary-accent-color: #366D62;
+    --primary-color: #1f2328;
+    --secondary-color: #36393F  ;
+    --text-color: #F2F3F5;
+    --button-color: #22A560;
+    --input-color: #23272A;
+    --card-accent-color: #2C6E49;
 }
 
 /* Redefinição de estilos padrão */
@@ -65,19 +66,28 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     color: var(--text-color);
-    background-color: var(--primary-color);
-    border: 2px solid var(--accent-color);
     border-radius: 5px;
 }
 
+.sidebar input {
+    background-color: var(--input-color);
+    border: none;
+}
+
+.sidebar input:focus {
+    outline: none;
+    box-shadow: 0 0 8px var(--button-color);
+}
+
 .sidebar button {
-    background-color: var(--secondary-accent-color);
+    background-color: var(--button-color);
+    border: 2px solid var(--primary-color);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .sidebar button:hover {
-    background-color: var(--accent-color);
+    background-color: var(--input-color);
 }
 
 /* Conteúdo principal */
@@ -115,9 +125,9 @@ body {
     gap: 8px; /* Adiciona espaço entre os elementos do card */
     margin-bottom: 10px;
     padding: 10px;
-    border: 2px solid var(--accent-color);
+    border: 2px solid var(--primary-color);
     border-radius: 6px;;
-    background-color: var(--secondary-accent-color);
+    background-color: var(--card-accent-color);
     position: relative; /* Para posicionar o botão de remover */
 }
 
@@ -143,7 +153,7 @@ body {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: #e05959;
+    background-color: #ED4245;
     color: white;
     border: none;
     border-radius: 50%;
@@ -157,7 +167,7 @@ body {
 }
 
 .remove-btn:hover {
-    background-color: #cc0000;
+    background-color: #cc000090;
 }
 
 /* Estilos responsivos */
