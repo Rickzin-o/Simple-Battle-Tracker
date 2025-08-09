@@ -38,64 +38,6 @@ body {
     height: 100%;
 }
 
-/* Barra lateral */
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin-right: 20px;
-    padding: 20px;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Formulários */
-.sidebar h2 {
-    margin: 0 0 20px 0;
-    color: var(--text-color);
-}
-
-.sidebar form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.sidebar label {
-    margin-bottom: 5px;
-    display: block;
-}
-
-.sidebar input,
-.sidebar button {
-    padding: 10px;
-    margin-bottom: 10px;
-    color: var(--text-color);
-    border-radius: 5px;
-}
-
-.sidebar input {
-    background-color: var(--input-color);
-    border: none;
-}
-
-.sidebar input:focus {
-    outline: none;
-    box-shadow: 0 0 8px var(--button-color);
-}
-
-.sidebar button {
-    background-color: var(--button-color);
-    border: 2px solid var(--primary-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.sidebar button:hover {
-    background-color: var(--input-color);
-}
-
 /* Conteúdo principal */
 #main-content {
     flex: 1;
@@ -104,11 +46,35 @@ body {
     flex-direction: column;
 }
 
+#background-section {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#action-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    color: var(--text-color);
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#action-buttons button:hover {
+    background-color: #2ecc71;
+}
+
+
 /* Listas de inimigos e jogadores */
 #enemy-list,
 #player-list {
     display: flex;
-    max-width: 70vw;
+    max-width: 100%; /* Changed from 70vw */
     gap: 2rem;
     justify-content: space-around;
     align-items: center;
@@ -175,15 +141,96 @@ body {
     background-color: #cc000090;
 }
 
+/* Estilos dos Modals */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Fundo preto semi-transparente */
+}
+
+.modal-content {
+    background-color: var(--secondary-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin: 0 0 20px 0;
+    color: var(--text-color);
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.modal-content label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-content input,
+.modal-content button {
+    padding: 10px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+.modal-content input {
+    background-color: var(--input-color);
+    border: none;
+}
+
+.modal-content input:focus {
+    outline: none;
+    box-shadow: 0 0 8px var(--button-color);
+}
+
+.modal-content button {
+    background-color: var(--button-color);
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: var(--input-color);
+}
+
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        margin-bottom: 20px;
     }
 
     .main-content {
