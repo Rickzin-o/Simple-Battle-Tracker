@@ -103,5 +103,3 @@ function handleFormSubmit(event, type) {
 // Adiciona os event listeners aos formulários, passando o tipo de criatura
 enemyForm.addEventListener('submit', (event) => handleFormSubmit(event, 'enemy'));
 playerForm.addEventListener('submit', (event) => handleFormSubmit(event, 'player'));
-
-// A função antiga 'removerCriatura' não é mais necessária, pois a remoção é tratada por card.
