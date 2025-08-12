@@ -103,3 +103,7 @@ function handleFormSubmit(event, type) {
 // Adiciona os event listeners aos formulários, passando o tipo de criatura
 enemyForm.addEventListener('submit', (event) => handleFormSubmit(event, 'enemy'));
 playerForm.addEventListener('submit', (event) => handleFormSubmit(event, 'player'));
+
+playerList.appendChild(createCreatureElement("Cavaleiro", 60, 16, 'player'))
+enemyList.appendChild(createCreatureElement("Zumbi", 30, 10, 'enemy'))
+enemyList.appendChild(createCreatureElement("Zumbi", 30, 10, 'enemy'))
