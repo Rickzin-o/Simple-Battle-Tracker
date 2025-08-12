@@ -25,6 +25,7 @@ body {
     background-color: var(--primary-color);
     color: var(--text-color);
     height: 100%;
+    width: 100%;
 }
 
 /* Container principal */
@@ -32,14 +33,15 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 0;
     padding: 20px;
     height: 100%;
+    gap: 1rem;
 }
 
 /* Conteúdo principal */
 #main-content {
+    max-width: 70%;
     flex: 1;
     justify-content: space-between;
     display: flex;
@@ -54,13 +56,13 @@ body {
 }
 
 #action-buttons button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 16px;
+    padding: 1rem 1.25rem;
+    margin: 0 1rem;
+    font-size: 1rem;
     color: var(--text-color);
     background-color: var(--button-color);
     border: none;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -69,20 +71,35 @@ body {
     background-color: #2ecc71;
 }
 
+#side-content {
+    max-width: 30%;
+    flex: 1;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.utility-card {
+    height: 32%;
+    text-align: center;
+    border-radius: 0.75rem;
+    background-color: var(--secondary-color);
+}
+
 
 /* Listas de inimigos e jogadores */
 #enemy-list,
 #player-list {
     display: flex;
-    max-width: 100%; /* Changed from 70vw */
+    max-width: 100%;
     gap: 2rem;
     justify-content: space-around;
     align-items: center;
     overflow-x: auto;
 
-    max-height: 300px;
+    height: 40vh;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 0.75rem;
     background-color: var(--secondary-color);
 }
 
@@ -90,14 +107,16 @@ body {
 .creature-card {
     margin: 0 auto;
     display: flex;
-    min-width: 15vw;
+    min-width: 12vw;
+    min-height: 16vh;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 8px; /* Adiciona espaço entre os elementos do card */
-    margin-bottom: 10px;
-    padding: 10px;
+    gap: 0.5rem; /* Adiciona espaço entre os elementos do card */
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
     border: 2px solid var(--primary-color);
-    border-radius: 6px;;
+    border-radius: 6px;
     background-color: var(--card-accent-color);
     position: relative; /* Para posicionar o botão de remover */
 }
