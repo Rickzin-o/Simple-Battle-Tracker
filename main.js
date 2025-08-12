@@ -4,6 +4,40 @@ const playerForm = document.getElementById('player-form');
 const enemyList = document.getElementById('enemy-list');
 const playerList = document.getElementById('player-list');
 
+// Seletores do Modal
+const enemyModal = document.getElementById('enemy-modal');
+const playerModal = document.getElementById('player-modal');
+const addEnemyBtn = document.getElementById('add-enemy-btn');
+const addPlayerBtn = document.getElementById('add-player-btn');
+const closeBtns = document.querySelectorAll('.close-btn');
+
+// Abrir Modals
+addEnemyBtn.addEventListener('click', () => {
+    enemyModal.style.display = 'block';
+});
+
+addPlayerBtn.addEventListener('click', () => {
+    playerModal.style.display = 'block';
+});
+
+// Fechar Modals
+function closeModal() {
+    enemyModal.style.display = 'none';
+    playerModal.style.display = 'none';
+}
+
+closeBtns.forEach(btn => {
+    btn.addEventListener('click', closeModal);
+});
+
+// Fechar modal ao clicar fora
+window.addEventListener('click', (event) => {
+    if (event.target == enemyModal || event.target == playerModal) {
+        closeModal();
+    }
+});
+
+
 /**
  * Cria o elemento HTML para uma criatura (jogador ou inimigo).
  * @param {string} name - O nome da criatura.
@@ -62,6 +96,7 @@ function handleFormSubmit(event, type) {
         }
 
         form.reset();
+        closeModal(); // Fecha o modal após adicionar a criatura
     }
 }
 
@@ -69,4 +104,6 @@ function handleFormSubmit(event, type) {
 enemyForm.addEventListener('submit', (event) => handleFormSubmit(event, 'enemy'));
 playerForm.addEventListener('submit', (event) => handleFormSubmit(event, 'player'));
 
-// A função antiga 'removerCriatura' não é mais necessária, pois a remoção é tratada por card.
+playerList.appendChild(createCreatureElement("Cavaleiro", 60, 16, 'player'))
+enemyList.appendChild(createCreatureElement("Zumbi", 30, 10, 'enemy'))
+enemyList.appendChild(createCreatureElement("Zumbi", 30, 10, 'enemy'))
