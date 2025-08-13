@@ -34,10 +34,38 @@ body {
     flex-direction: row;
     width: 100%;
     margin: 0 0;
-    padding: 20px;
-    height: 100%;
+    padding: 1.25rem;
+    padding-bottom: 0rem;
+    height: 96%;
     gap: 1rem;
 }
+
+footer {
+    height: 4%;
+    padding: 0 1.25rem;
+    display: flex;
+}
+
+footer p {
+    width: 100%;
+    margin: auto 0;
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+footer a {
+    width: 5%;
+    margin: auto 0;
+    font-size: 0.8rem;
+    text-align: left;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+footer a:hover {
+    color: var(--button-color);
+}
+
 
 /* Conteúdo principal */
 #main-content {
