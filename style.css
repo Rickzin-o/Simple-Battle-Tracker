@@ -110,8 +110,15 @@ footer a:hover {
 .utility-card {
     height: 32%;
     text-align: center;
+    display: flex;
     border-radius: 0.75rem;
     background-color: var(--secondary-color);
+}
+
+.utility-card p {
+    margin: auto;
+    font-size: 1.5rem;
+    color: var(--primary-color);
 }
 
 
