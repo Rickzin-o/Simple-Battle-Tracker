@@ -48,7 +48,7 @@ body {
 /* Header */
 .app-header {
     text-align: center;
-    padding: 1rem 0 1rem;
+    padding: 1rem 0 0.75rem;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 1.5rem;
     flex-shrink: 0;
