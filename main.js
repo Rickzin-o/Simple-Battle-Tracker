@@ -235,24 +235,3 @@ class BattleManager {
 document.addEventListener('DOMContentLoaded', () => {
     window.battleManager = new BattleManager();
 });
-
-// Estilo para estado vazio
-const emptyStateStyle = document.createElement('style');
-emptyStateStyle.textContent = `
-    .empty-state {
-        text-align: center;
-        color: var(--text-muted);
-        padding: 2rem;
-        width: 100%;
-    }
-    
-    .empty-state p {
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem;
-    }
-    
-    .empty-state small {
-        font-size: 0.9rem;
-    }
-`;
-document.head.appendChild(emptyStateStyle);

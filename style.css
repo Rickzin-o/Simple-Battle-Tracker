@@ -22,16 +22,16 @@
     box-sizing: border-box;
 }
 
-html {
+html, body {
     height: 100%;
+    overflow-x: hidden;
 }
 
 body {
     background: linear-gradient(135deg, var(--primary-color) 0%, #15181c 100%);
     color: var(--text-color);
-    font-family: 'Segoe UI', Tahoma, 'Geneva', Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    min-height: 100%;
     background-attachment: fixed;
 }
 
@@ -42,14 +42,16 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 1rem;
+    width: 100%;
 }
 
 /* Header */
 .app-header {
     text-align: center;
-    padding: 2rem 0 1rem;
+    padding: 1rem 0 1rem;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
 }
 
 .app-header h1 {
@@ -62,46 +64,59 @@ body {
 
 .app-header p {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
-/* Layout Principal */
+/* Layout Principal*/
 .main-container {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     flex: 1;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    min-height: 0;
+    width: 100%;
 }
 
 .battle-area {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    width: 100%;
+    min-height: 0;
+    width: 100%;
+    max-width: calc(100% - 340px);
 }
 
 .utilities-sidebar {
     width: 320px;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
-/* Seções de Criaturas */
+/* Seções de Criaturas*/
 .creature-section {
     background: var(--secondary-color);
     border-radius: var(--border-radius);
-    padding: 1.5rem;
+    padding: 1.25rem;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
+    flex-shrink: 0;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-color);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .players-section .section-title::before {
@@ -114,20 +129,47 @@ body {
 
 .creature-list {
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
-    min-height: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem 0.25rem;
     align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+}
+
+/* Custom scrollbar para as listas */
+.creature-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.creature-list::-webkit-scrollbar-track {
+    background: var(--input-color);
+    border-radius: 4px;
+}
+
+.creature-list::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+.creature-list::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
 }
 
 /* Área de Controles */
 .battle-controls {
     background: var(--secondary-color);
     border-radius: var(--border-radius);
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
+    flex-shrink: 0;
+    max-width: 100%;
 }
 
 .action-buttons {
@@ -135,7 +177,7 @@ body {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .battle-info {
@@ -145,7 +187,7 @@ body {
 
 .info-card {
     background: var(--card-color);
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
 }
@@ -171,6 +213,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .btn-primary {
@@ -218,11 +261,14 @@ body {
     background: var(--card-color);
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 1.25rem;
-    min-width: 160px;
+    padding: 0.8rem;
+    line-height: 0.8;
+    min-width: 150px;
+    height: 120px;
     position: relative;
     transition: var(--transition);
     box-shadow: var(--shadow);
+    flex-shrink: 0;
 }
 
 .creature-card:hover {
@@ -240,15 +286,18 @@ body {
 
 .creature-name {
     font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .creature-stats {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .stat-group {
@@ -258,7 +307,7 @@ body {
 }
 
 .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -266,18 +315,18 @@ body {
 
 .stat-value {
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .creature-hp {
-    width: 80px;
+    width: 70px;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.4rem;
     background: var(--input-color);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: var(--transition);
 }
 
@@ -291,9 +340,9 @@ body {
     width: 100%;
     height: 6px;
     background: var(--input-color);
-    border-radius: 3px;
+    border-radius: 4px;
     overflow: hidden;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .hp-fill {
@@ -304,14 +353,14 @@ body {
 
 .remove-btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 6px;
+    right: 6px;
     background: var(--danger-color);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     cursor: pointer;
     font-size: 12px;
     display: flex;
@@ -338,7 +387,7 @@ body {
 
 .sidebar-header {
     background: var(--card-color);
-    padding: 1.5rem;
+    padding: 1.25rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -347,7 +396,7 @@ body {
 }
 
 .utility-cards {
-    padding: 1.5rem;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -358,7 +407,7 @@ body {
     background: var(--card-color);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 1.5rem;
+    padding: 1.25rem;
     text-align: center;
     transition: var(--transition);
     flex: 1;
@@ -497,8 +546,9 @@ body {
 .app-footer {
     background: var(--secondary-color);
     border-top: 1px solid var(--border-color);
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     margin-top: auto;
+    flex-shrink: 0;
 }
 
 .footer-content {
@@ -525,8 +575,34 @@ body {
     font-size: 0.9rem;
 }
 
+/* Estados Vazios */
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.empty-state p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.empty-state small {
+    font-size: 0.9rem;
+}
+
 /* Responsividade */
 @media (max-width: 1024px) {
+    .battle-area {
+        max-width: 100%;
+    }
+
     .main-container {
         flex-direction: column;
     }
@@ -537,6 +613,18 @@ body {
     
     .utility-cards {
         flex-direction: row;
+    }
+
+    .creature-section {
+        height: auto;
+        min-height: 240px;
+    }
+
+    .creature-list {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        overflow-y: auto;
+        max-height: 300px;
     }
 }
 
@@ -574,6 +662,10 @@ body {
     .utility-cards {
         flex-direction: column;
     }
+
+    .creature-section {
+        height: auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -593,5 +685,10 @@ body {
     
     .modal-form {
         padding: 1.5rem;
+    }
+
+    .creature-card {
+        min-width: 140px;
+        height: 130px;
     }
 }
