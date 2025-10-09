@@ -138,7 +138,7 @@ class BattleManager {
             container.innerHTML = `
                 <div class="empty-state">
                     <p>Nenhum ${type === 'player' ? 'jogador' : 'inimigo'} adicionado</p>
-                    <small>Use o botão acima para adicionar</small>
+                    <small>Use o painél ${type === 'player' ? 'abaixo': 'acima'} para adicionar</small>
                 </div>
             `;
             return;
