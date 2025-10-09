@@ -597,6 +597,56 @@ body {
     font-size: 0.9rem;
 }
 
+/* Área de anotações */
+#notes-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#notes-textarea {
+    flex: 1;
+    width: 100%;
+    background: var(--input-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.75rem;
+    resize: vertical;
+    min-height: 100px;
+    transition: var(--transition);
+}
+
+#notes-textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(34, 165, 96, 0.2);
+}
+
+#notes-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+#notes-textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+#notes-textarea::-webkit-scrollbar-track {
+    background: var(--input-color);
+    border-radius: 4px;
+}
+
+#notes-textarea::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+#notes-textarea::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
+
+
 /* Responsividade */
 @media (max-width: 1024px) {
     .battle-area {
