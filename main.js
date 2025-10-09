@@ -10,6 +10,7 @@ class BattleManager {
         this.bindEvents();
         this.updateBattleStats();
         this.loadExamples();
+        this.initNotes();
     }
 
     bindEvents() {
@@ -228,6 +229,22 @@ class BattleManager {
             this.addCreature({ name: "Zumbi", hp: 30, ac: 10 }, 'enemy');
             this.addCreature({ name: "Zumbi", hp: 30, ac: 10 }, 'enemy');
         }
+    }
+
+    initNotes() {
+        const notesTextarea = document.getElementById('notes-textarea')
+        if (!notesTextarea) return;
+
+        // Carregar anotações salvas do localStorage
+        const savedNotes = localStorage.getItem('battleTrackerNotes')
+        if (savedNotes) {
+            notesTextarea.value = savedNotes;
+        }
+
+        // Salvar anotações no localStorage ao digitar
+        notesTextarea.addEventListener('input', () => {
+            localStorage.setItem('battleTrackerNotes', notesTextarea.value)
+        });
     }
 }
 
