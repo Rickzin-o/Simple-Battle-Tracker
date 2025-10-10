@@ -17,35 +17,25 @@ class App {
     this.loadExamples();
     // Dispara a atualização inicial da UI diretamente após carregar os exemplos.
     // Isto é mais fiável do que depender de eventos durante a configuração inicial.
-    this.uiManager.updateUI({
-      players: this.battleManager.players,
-      enemies: this.battleManager.enemies,
-      playerCount: this.battleManager.players.length,
-      enemyCount: this.battleManager.enemies.length,
-    });
+    this.battleManager.dispatchStateChange();
   }
 
   /**
    * Carrega criaturas de exemplo iniciais se a batalha estiver vazia.
    */
   loadExamples() {
-    if (
-      this.battleManager.players.length === 0 &&
-      this.battleManager.enemies.length === 0
-    ) {
-      this.battleManager.addCreature(
-        { name: "Cavaleiro", hp: 60, ac: 16 },
-        "player"
-      );
-      this.battleManager.addCreature(
-        { name: "Zumbi", hp: 30, ac: 10 },
-        "enemy"
-      );
-      this.battleManager.addCreature(
-        { name: "Zumbi", hp: 30, ac: 10 },
-        "enemy"
-      );
-    }
+    this.battleManager.addCreature(
+      { name: "Cavaleiro", hp: 60, ac: 16 },
+      "player"
+    );
+    this.battleManager.addCreature(
+      { name: "Zumbi", hp: 30, ac: 10 },
+      "enemy"
+    );
+    this.battleManager.addCreature(
+      { name: "Zumbi", hp: 30, ac: 10 },
+      "enemy"
+    );
   }
 }
 
