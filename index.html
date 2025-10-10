@@ -1,139 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Battle Tracker</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="app-container">
-        <header class="app-header">
-            <h1>Simple Battle Tracker</h1>
-            <p>Gerencie suas batalhas de RPG de forma simples e intuitiva</p>
-        </header>
+      <header class="app-header">
+        <h1>Simple Battle Tracker</h1>
+        <p>Gerencie suas batalhas de RPG de forma simples e intuitiva</p>
+      </header>
 
-        <div class="main-container">
-            <div class="battle-area">
-                <!-- Jogadores -->
-                <section class="creature-section players-section">
-                    <h2 class="section-title">Jogadores</h2>
-                    <div id="player-list" class="creature-list"></div>
-                </section>
+      <div class="main-container">
+        <div class="battle-area">
+          <!-- Jogadores -->
+          <section class="creature-section players-section">
+            <h2 class="section-title">Jogadores</h2>
+            <div id="player-list" class="creature-list"></div>
+          </section>
 
-                <!-- Painél de Controle -->
-                <section class="battle-controls">
-                    <div class="action-buttons">
-                        <button id="add-player-btn" class="btn btn-primary modal-trigger">
-                            <span class="btn-icon">+</span>
-                            Adicionar Jogador
-                        </button>
-                        <button id="add-enemy-btn" class="btn btn-secondary modal-trigger">
-                            <span class="btn-icon">+</span>
-                            Adicionar Inimigo
-                        </button>
-                        <button id="clear-battle-btn" class="btn btn-outline">
-                            <span class="btn-icon">🗑️</span>
-                            Limpar Batalha
-                        </button>
-                    </div>
-                    <div class="battle-info">
-                        <div class="info-card">
-                            <h3>Status da Batalha</h3>
-                            <p>Jogadores: <span id="player-count">0</span></p>
-                            <p>Inimigos: <span id="enemy-count">0</span></p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Inimigos -->
-                <section class="creature-section enemies-section">
-                    <h2 class="section-title">Inimigos</h2>
-                    <div id="enemy-list" class="creature-list"></div>
-                </section>
+          <!-- Painél de Controle -->
+          <section class="battle-controls">
+            <div class="action-buttons">
+              <button id="add-player-btn" class="btn btn-primary modal-trigger">
+                <span class="btn-icon">+</span>
+                Adicionar Jogador
+              </button>
+              <button
+                id="add-enemy-btn"
+                class="btn btn-secondary modal-trigger"
+              >
+                <span class="btn-icon">+</span>
+                Adicionar Inimigo
+              </button>
+              <button id="clear-battle-btn" class="btn btn-outline">
+                <span class="btn-icon">🗑️</span>
+                Limpar Batalha
+              </button>
             </div>
+            <div class="battle-info">
+              <div class="info-card">
+                <h3>Status da Batalha</h3>
+                <p>Jogadores: <span id="player-count">0</span></p>
+                <p>Inimigos: <span id="enemy-count">0</span></p>
+              </div>
+            </div>
+          </section>
 
-            <!-- Sidebar de utilidades -->
-            <aside class="utilities-sidebar">
-                <div class="utility-cards">
-                    <div class="utility-card coming-soon">
-                        <div class="card-icon">🎲<h3>Dados</h3></div>
-                        <p>EM BREVE</p>
-                    </div>
-                    <div class="utility-card coming-soon">
-                        <div class="card-icon">⏱️<h3>Iniciativas</h3></div>
-                        <p>EM BREVE</p>
-                    </div>
-                    <div class="utility-card" id="notes-container">
-                        <div class="card-icon">📋<h3>Anotações</h3></div>
-                        <textarea id="notes-textarea" placeholder="Suas anotações de batalha..."></textarea>
-                    </div>
-                </div>
-            </aside>
+          <!-- Inimigos -->
+          <section class="creature-section enemies-section">
+            <h2 class="section-title">Inimigos</h2>
+            <div id="enemy-list" class="creature-list"></div>
+          </section>
         </div>
 
-        <footer class="app-footer">
-            <div class="footer-content">
-                <a href="https://github.com/Rickzin-o/Simple-Battle-Tracker" target="_blank" class="footer-link">Repositório</a>
-                <p class="footer-text">&copy; Criado por José "Rickzinho" Ricardo.</p>
+        <!-- Sidebar de utilidades -->
+        <aside class="utilities-sidebar">
+          <div class="utility-cards">
+            <div class="utility-card coming-soon">
+              <div class="card-icon">
+                🎲
+                <h3>Dados</h3>
+              </div>
+              <p>EM BREVE</p>
             </div>
-        </footer>
+            <div class="utility-card coming-soon">
+              <div class="card-icon">
+                ⏱️
+                <h3>Iniciativas</h3>
+              </div>
+              <p>EM BREVE</p>
+            </div>
+            <div class="utility-card" id="notes-container">
+              <div class="card-icon">
+                📋
+                <h3>Anotações</h3>
+              </div>
+              <textarea
+                id="notes-textarea"
+                placeholder="Suas anotações de batalha..."
+              ></textarea>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="app-footer">
+        <div class="footer-content">
+          <a
+            href="https://github.com/Rickzin-o/Simple-Battle-Tracker"
+            target="_blank"
+            class="footer-link"
+            >Repositório</a
+          >
+          <p class="footer-text">&copy; Criado por José "Rickzinho" Ricardo.</p>
+        </div>
+      </footer>
     </div>
 
     <!-- Modal Inimigo -->
     <div id="enemy-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Adicionar Inimigo</h2>
-                <span class="close-btn">&times;</span>
-            </div>
-            <form id="enemy-form" class="modal-form" autocomplete="off">
-                <div class="form-group">
-                    <label for="enemy-name">Nome do Inimigo</label>
-                    <input type="text" id="enemy-name" name="enemy-name" required placeholder="Ex: Zumbi">
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="enemy-hp">HP Máximo</label>
-                        <input type="number" id="enemy-hp" name="enemy-hp" min="0" max="10000" required value="30">
-                    </div>
-                    <div class="form-group">
-                        <label for="enemy-ac">Classe de Armadura (CA)</label>
-                        <input type="number" id="enemy-ac" name="enemy-ac" min="0" max="100" required value="10">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-full">Adicionar Inimigo</button>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Adicionar Inimigo</h2>
+          <span class="close-btn">&times;</span>
         </div>
+        <form id="enemy-form" class="modal-form" autocomplete="off">
+          <div class="form-group">
+            <label for="enemy-name">Nome do Inimigo</label>
+            <input
+              type="text"
+              id="enemy-name"
+              name="enemy-name"
+              required
+              placeholder="Ex: Zumbi"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="enemy-hp">HP Máximo</label>
+              <input
+                type="number"
+                id="enemy-hp"
+                name="enemy-hp"
+                min="0"
+                max="10000"
+                required
+                value="30"
+              />
+            </div>
+            <div class="form-group">
+              <label for="enemy-ac">Classe de Armadura (CA)</label>
+              <input
+                type="number"
+                id="enemy-ac"
+                name="enemy-ac"
+                min="0"
+                max="100"
+                required
+                value="10"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            Adicionar Inimigo
+          </button>
+        </form>
+      </div>
     </div>
 
     <!-- Modal Jogador -->
     <div id="player-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Adicionar Jogador</h2>
-                <span class="close-btn">&times;</span>
-            </div>
-            <form id="player-form" class="modal-form" autocomplete="off">
-                <div class="form-group">
-                    <label for="player-name">Nome do Jogador</label>
-                    <input type="text" id="player-name" name="player-name" required placeholder="Ex: Cavaleiro">
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="player-hp">HP Máximo</label>
-                        <input type="number" id="player-hp" name="player-hp" min="0" max="10000" required value="60">
-                    </div>
-                    <div class="form-group">
-                        <label for="player-ac">Classe de Armadura (CA)</label>
-                        <input type="number" id="player-ac" name="player-ac" min="0" max="100" required value="16">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-full">Adicionar Jogador</button>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Adicionar Jogador</h2>
+          <span class="close-btn">&times;</span>
         </div>
+        <form id="player-form" class="modal-form" autocomplete="off">
+          <div class="form-group">
+            <label for="player-name">Nome do Jogador</label>
+            <input
+              type="text"
+              id="player-name"
+              name="player-name"
+              required
+              placeholder="Ex: Cavaleiro"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="player-hp">HP Máximo</label>
+              <input
+                type="number"
+                id="player-hp"
+                name="player-hp"
+                min="0"
+                max="10000"
+                required
+                value="60"
+              />
+            </div>
+            <div class="form-group">
+              <label for="player-ac">Classe de Armadura (CA)</label>
+              <input
+                type="number"
+                id="player-ac"
+                name="player-ac"
+                min="0"
+                max="100"
+                required
+                value="16"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            Adicionar Jogador
+          </button>
+        </form>
+      </div>
     </div>
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

@@ -1,166 +1,184 @@
 // Gerenciador de Estado da Batalha
 class BattleManager {
-    constructor() {
-        this.players = [];
-        this.enemies = [];
-        this.init();
+  constructor() {
+    this.players = [];
+    this.enemies = [];
+    this.init();
+  }
+
+  init() {
+    this.bindEvents();
+    this.updateBattleStats();
+    this.loadExamples();
+    this.initNotes();
+  }
+
+  bindEvents() {
+    // Modals
+    document
+      .getElementById("add-enemy-btn")
+      .addEventListener("click", () => this.openModal("enemy"));
+    document
+      .getElementById("add-player-btn")
+      .addEventListener("click", () => this.openModal("player"));
+    document
+      .getElementById("clear-battle-btn")
+      .addEventListener("click", () => this.clearBattle());
+
+    // Fechar modals
+    document.querySelectorAll(".close-btn").forEach((btn) => {
+      btn.addEventListener("click", () => this.closeModals());
+    });
+
+    // Formulários
+    document
+      .getElementById("enemy-form")
+      .addEventListener("submit", (e) => this.handleFormSubmit(e, "enemy"));
+    document
+      .getElementById("player-form")
+      .addEventListener("submit", (e) => this.handleFormSubmit(e, "player"));
+
+    // Fechar modal ao clicar fora
+    window.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal")) {
+        this.closeModals();
+      }
+    });
+  }
+
+  openModal(type) {
+    const modal = document.getElementById(`${type}-modal`);
+    modal.style.display = "block";
+
+    // Foco no primeiro input
+    setTimeout(() => {
+      const firstInput = modal.querySelector("input");
+      if (firstInput) firstInput.focus();
+    }, 100);
+  }
+
+  closeModals() {
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.style.display = "none";
+    });
+  }
+
+  handleFormSubmit(event, type) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get(`${type}-name`),
+      hp: parseInt(formData.get(`${type}-hp`)),
+      ac: parseInt(formData.get(`${type}-ac`)),
+    };
+
+    if (this.validateCreatureData(data)) {
+      this.addCreature(data, type);
+      form.reset();
+      this.closeModals();
+    }
+  }
+
+  validateCreatureData(data) {
+    if (!data.name.trim()) {
+      alert("Por favor, insira um nome para a criatura.");
+      return false;
+    }
+    if (data.hp <= 0) {
+      alert("O HP deve ser maior que 0.");
+      return false;
+    }
+    if (data.ac < 0) {
+      alert("A CA não pode ser negativa.");
+      return false;
+    }
+    return true;
+  }
+
+  addCreature(data, type) {
+    const creature = {
+      id: Date.now() + Math.random(),
+      ...data,
+      currentHp: data.hp,
+      type: type,
+    };
+
+    if (type === "player") {
+      this.players.push(creature);
+    } else {
+      this.enemies.push(creature);
     }
 
-    init() {
-        this.bindEvents();
-        this.updateBattleStats();
-        this.loadExamples();
-        this.initNotes();
+    this.renderCreatures();
+    this.updateBattleStats();
+  }
+
+  removeCreature(id, type) {
+    if (type === "player") {
+      this.players = this.players.filter((p) => p.id !== id);
+    } else {
+      this.enemies = this.enemies.filter((e) => e.id !== id);
     }
 
-    bindEvents() {
-        // Modals
-        document.getElementById('add-enemy-btn').addEventListener('click', () => this.openModal('enemy'));
-        document.getElementById('add-player-btn').addEventListener('click', () => this.openModal('player'));
-        document.getElementById('clear-battle-btn').addEventListener('click', () => this.clearBattle());
+    this.renderCreatures();
+    this.updateBattleStats();
+  }
 
-        // Fechar modals
-        document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', () => this.closeModals());
-        });
+  updateHp(id, newHp, type) {
+    const collection = type === "player" ? this.players : this.enemies;
+    const creature = collection.find((c) => c.id === id);
 
-        // Formulários
-        document.getElementById('enemy-form').addEventListener('submit', (e) => this.handleFormSubmit(e, 'enemy'));
-        document.getElementById('player-form').addEventListener('submit', (e) => this.handleFormSubmit(e, 'player'));
-
-        // Fechar modal ao clicar fora
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                this.closeModals();
-            }
-        });
+    if (creature) {
+      creature.currentHp = Math.max(0, Math.min(newHp, creature.hp));
+      this.renderCreatures();
     }
+  }
 
-    openModal(type) {
-        const modal = document.getElementById(`${type}-modal`);
-        modal.style.display = 'block';
-        
-        // Foco no primeiro input
-        setTimeout(() => {
-            const firstInput = modal.querySelector('input');
-            if (firstInput) firstInput.focus();
-        }, 100);
-    }
+  renderCreatures() {
+    this.renderCreatureList("player", this.players);
+    this.renderCreatureList("enemy", this.enemies);
+  }
 
-    closeModals() {
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.style.display = 'none';
-        });
-    }
+  renderCreatureList(type, creatures) {
+    const container = document.getElementById(`${type}-list`);
+    container.innerHTML = "";
 
-    handleFormSubmit(event, type) {
-        event.preventDefault();
-        
-        const form = event.target;
-        const formData = new FormData(form);
-        const data = {
-            name: formData.get(`${type}-name`),
-            hp: parseInt(formData.get(`${type}-hp`)),
-            ac: parseInt(formData.get(`${type}-ac`))
-        };
-
-        if (this.validateCreatureData(data)) {
-            this.addCreature(data, type);
-            form.reset();
-            this.closeModals();
-        }
-    }
-
-    validateCreatureData(data) {
-        if (!data.name.trim()) {
-            alert('Por favor, insira um nome para a criatura.');
-            return false;
-        }
-        if (data.hp <= 0) {
-            alert('O HP deve ser maior que 0.');
-            return false;
-        }
-        if (data.ac < 0) {
-            alert('A CA não pode ser negativa.');
-            return false;
-        }
-        return true;
-    }
-
-    addCreature(data, type) {
-        const creature = {
-            id: Date.now() + Math.random(),
-            ...data,
-            currentHp: data.hp,
-            type: type
-        };
-
-        if (type === 'player') {
-            this.players.push(creature);
-        } else {
-            this.enemies.push(creature);
-        }
-
-        this.renderCreatures();
-        this.updateBattleStats();
-    }
-
-    removeCreature(id, type) {
-        if (type === 'player') {
-            this.players = this.players.filter(p => p.id !== id);
-        } else {
-            this.enemies = this.enemies.filter(e => e.id !== id);
-        }
-
-        this.renderCreatures();
-        this.updateBattleStats();
-    }
-
-    updateHp(id, newHp, type) {
-        const collection = type === 'player' ? this.players : this.enemies;
-        const creature = collection.find(c => c.id === id);
-        
-        if (creature) {
-            creature.currentHp = Math.max(0, Math.min(newHp, creature.hp));
-            this.renderCreatures();
-        }
-    }
-
-    renderCreatures() {
-        this.renderCreatureList('player', this.players);
-        this.renderCreatureList('enemy', this.enemies);
-    }
-
-    renderCreatureList(type, creatures) {
-        const container = document.getElementById(`${type}-list`);
-        container.innerHTML = '';
-
-        if (creatures.length === 0) {
-            container.innerHTML = `
+    if (creatures.length === 0) {
+      container.innerHTML = `
                 <div class="empty-state">
-                    <p>Nenhum ${type === 'player' ? 'jogador' : 'inimigo'} adicionado</p>
-                    <small>Use o painél ${type === 'player' ? 'abaixo': 'acima'} para adicionar</small>
+                    <p>Nenhum ${
+                      type === "player" ? "jogador" : "inimigo"
+                    } adicionado</p>
+                    <small>Use o painél ${
+                      type === "player" ? "abaixo" : "acima"
+                    } para adicionar</small>
                 </div>
             `;
-            return;
-        }
-
-        creatures.forEach(creature => {
-            const element = this.createCreatureElement(creature);
-            container.appendChild(element);
-        });
+      return;
     }
 
-    createCreatureElement(creature) {
-        const element = document.createElement('div');
-        element.className = `creature-card ${creature.type}-card`;
-        element.dataset.id = creature.id;
+    creatures.forEach((creature) => {
+      const element = this.createCreatureElement(creature);
+      container.appendChild(element);
+    });
+  }
 
-        const hpPercentage = (creature.currentHp / creature.hp) * 100;
-        const hpColor = hpPercentage > 60 ? 'var(--accent-color)' : 
-                       hpPercentage > 25 ? 'orange' : 'var(--danger-color)';
+  createCreatureElement(creature) {
+    const element = document.createElement("div");
+    element.className = `creature-card ${creature.type}-card`;
+    element.dataset.id = creature.id;
 
-        element.innerHTML = `
+    const hpPercentage = (creature.currentHp / creature.hp) * 100;
+    const hpColor =
+      hpPercentage > 60
+        ? "var(--accent-color)"
+        : hpPercentage > 25
+        ? "orange"
+        : "var(--danger-color)";
+
+    element.innerHTML = `
             <button class="remove-btn" title="Remover">×</button>
             <div class="creature-name">${creature.name}</div>
             <div class="creature-stats">
@@ -183,72 +201,80 @@ class BattleManager {
             </div>
         `;
 
-        // Event listeners
-        element.querySelector('.remove-btn').addEventListener('click', () => {
-            this.removeCreature(creature.id, creature.type);
-        });
+    // Event listeners
+    element.querySelector(".remove-btn").addEventListener("click", () => {
+      this.removeCreature(creature.id, creature.type);
+    });
 
-        const hpInput = element.querySelector('.creature-hp');
-        hpInput.addEventListener('change', (e) => {
-            const newHp = parseInt(e.target.value);
-            this.updateHp(creature.id, newHp, creature.type);
-        });
+    const hpInput = element.querySelector(".creature-hp");
+    hpInput.addEventListener("change", (e) => {
+      const newHp = parseInt(e.target.value);
+      this.updateHp(creature.id, newHp, creature.type);
+    });
 
-        hpInput.addEventListener('input', (e) => {
-            const newHp = parseInt(e.target.value);
-            const hpFill = element.querySelector('.hp-fill');
-            const hpPercentage = (newHp / creature.hp) * 100;
-            const hpColor = hpPercentage > 60 ? 'var(--accent-color)' : 
-                           hpPercentage > 25 ? 'orange' : 'var(--danger-color)';
-            
-            hpFill.style.width = `${hpPercentage}%`;
-            hpFill.style.background = hpColor;
-        });
+    hpInput.addEventListener("input", (e) => {
+      const newHp = parseInt(e.target.value);
+      const hpFill = element.querySelector(".hp-fill");
+      const hpPercentage = (newHp / creature.hp) * 100;
+      const hpColor =
+        hpPercentage > 60
+          ? "var(--accent-color)"
+          : hpPercentage > 25
+          ? "orange"
+          : "var(--danger-color)";
 
-        return element;
+      hpFill.style.width = `${hpPercentage}%`;
+      hpFill.style.background = hpColor;
+    });
+
+    return element;
+  }
+
+  updateBattleStats() {
+    document.getElementById("player-count").textContent = this.players.length;
+    document.getElementById("enemy-count").textContent = this.enemies.length;
+  }
+
+  clearBattle() {
+    if (
+      confirm(
+        "Tem certeza que deseja limpar toda a batalha? Esta ação não pode ser desfeita."
+      )
+    ) {
+      this.players = [];
+      this.enemies = [];
+      this.renderCreatures();
+      this.updateBattleStats();
+    }
+  }
+
+  loadExamples() {
+    // Adiciona exemplos iniciais
+    if (this.players.length === 0 && this.enemies.length === 0) {
+      this.addCreature({ name: "Cavaleiro", hp: 60, ac: 16 }, "player");
+      this.addCreature({ name: "Zumbi", hp: 30, ac: 10 }, "enemy");
+      this.addCreature({ name: "Zumbi", hp: 30, ac: 10 }, "enemy");
+    }
+  }
+
+  initNotes() {
+    const notesTextarea = document.getElementById("notes-textarea");
+    if (!notesTextarea) return;
+
+    // Carregar anotações salvas do localStorage
+    const savedNotes = localStorage.getItem("battleTrackerNotes");
+    if (savedNotes) {
+      notesTextarea.value = savedNotes;
     }
 
-    updateBattleStats() {
-        document.getElementById('player-count').textContent = this.players.length;
-        document.getElementById('enemy-count').textContent = this.enemies.length;
-    }
-
-    clearBattle() {
-        if (confirm('Tem certeza que deseja limpar toda a batalha? Esta ação não pode ser desfeita.')) {
-            this.players = [];
-            this.enemies = [];
-            this.renderCreatures();
-            this.updateBattleStats();
-        }
-    }
-
-    loadExamples() {
-        // Adiciona exemplos iniciais
-        if (this.players.length === 0 && this.enemies.length === 0) {
-            this.addCreature({ name: "Cavaleiro", hp: 60, ac: 16 }, 'player');
-            this.addCreature({ name: "Zumbi", hp: 30, ac: 10 }, 'enemy');
-            this.addCreature({ name: "Zumbi", hp: 30, ac: 10 }, 'enemy');
-        }
-    }
-
-    initNotes() {
-        const notesTextarea = document.getElementById('notes-textarea')
-        if (!notesTextarea) return;
-
-        // Carregar anotações salvas do localStorage
-        const savedNotes = localStorage.getItem('battleTrackerNotes')
-        if (savedNotes) {
-            notesTextarea.value = savedNotes;
-        }
-
-        // Salvar anotações no localStorage ao digitar
-        notesTextarea.addEventListener('input', () => {
-            localStorage.setItem('battleTrackerNotes', notesTextarea.value)
-        });
-    }
+    // Salvar anotações no localStorage ao digitar
+    notesTextarea.addEventListener("input", () => {
+      localStorage.setItem("battleTrackerNotes", notesTextarea.value);
+    });
+  }
 }
 
 // Inicialização da aplicação
-document.addEventListener('DOMContentLoaded', () => {
-    window.battleManager = new BattleManager();
+document.addEventListener("DOMContentLoaded", () => {
+  window.battleManager = new BattleManager();
 });
