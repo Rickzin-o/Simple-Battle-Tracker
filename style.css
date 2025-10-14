@@ -354,8 +354,8 @@ body {
 
 .remove-btn {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: -8px;
+  right: 8px;
   background: var(--danger-color);
   color: white;
   border: none;
@@ -375,6 +375,31 @@ body {
   opacity: 1;
   transform: scale(1.1);
   background: var(--danger-hover);
+}
+
+.duplicate-btn {
+  position: absolute;
+  top: -8px;
+  right: 36px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  opacity: 0.7;
+}
+
+.duplicate-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background: var(--text-muted);
 }
 
 /* Sidebar */

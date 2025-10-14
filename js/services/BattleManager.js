@@ -25,6 +25,7 @@ export class BattleManager extends EventTarget {
     const creature = new Creature(creatureData, {
       onHpChange: (id, newHp) => this.updateHp(id, newHp),
       onRemove: (id) => this.removeCreature(id, type),
+      onDuplicate: (id) => this.duplicateCreature(id, type)
     });
 
     if (type === "player") {
@@ -46,6 +47,38 @@ export class BattleManager extends EventTarget {
       this.players = this.players.filter((p) => p.id !== id);
     } else {
       this.enemies = this.enemies.filter((e) => e.id !== id);
+    }
+    this.dispatchStateChange();
+  }
+
+  /**
+   * Duplica uma carta de criatura da batalha.
+   * @param {number} id - O ID da criatura a ser removida.
+   * @param {string} type - O tipo da criatura ('player' ou 'enemy').
+   */
+  duplicateCreature(id, type) {
+    if (type === "player") {
+      var index = this.players.findIndex(p => p.id === id)
+      var player = this.players.at(index)
+      this.addCreature(
+        {
+          name: structuredClone(player.name),
+          hp: structuredClone(player.hp),
+          ac: structuredClone(player.ac),
+          type: "player"
+        }
+      )
+    } else {
+      var index = this.enemies.findIndex(p => p.id === id)
+      var enemy = this.enemies.at(index)
+      this.addCreature(
+        {
+          name: structuredClone(enemy.name),
+          hp: structuredClone(enemy.hp),
+          ac: structuredClone(enemy.ac),
+          type: "enemy"
+        }
+      )
     }
     this.dispatchStateChange();
   }
