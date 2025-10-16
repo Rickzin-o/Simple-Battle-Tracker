@@ -65,8 +65,8 @@ export class BattleManager extends EventTarget {
           name: structuredClone(player.name),
           hp: structuredClone(player.hp),
           ac: structuredClone(player.ac),
-          type: "player"
-        }
+        },
+        "player"
       )
     } else {
       var index = this.enemies.findIndex(p => p.id === id)
@@ -76,8 +76,8 @@ export class BattleManager extends EventTarget {
           name: structuredClone(enemy.name),
           hp: structuredClone(enemy.hp),
           ac: structuredClone(enemy.ac),
-          type: "enemy"
-        }
+        },
+        "enemy"
       )
     }
     this.dispatchStateChange();
