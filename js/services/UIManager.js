@@ -49,6 +49,12 @@ export class UIManager {
     document
       .getElementById("clear-battle-btn")
       .addEventListener("click", () => this.handleClearBattle());
+    document
+      .getElementById("save-battle-btn")
+      .addEventListener("click", () => this.handleSaveBattle());
+    document
+      .getElementById("load-battle-btn")
+      .addEventListener("click", () => this.handleLoadBattle());
 
     // Ouve as mudanças de estado do BattleManager
     this.battleManager.addEventListener("state-change", (e) =>
@@ -135,6 +141,55 @@ export class UIManager {
   }
 
   /**
+   * Lida com o clique no botão de salvar a batalha.
+   */
+  handleSaveBattle() {
+    const state = this.battleManager.getStateForSave();
+    const dataStr =
+      "data:text/json;charset=utf-8," +
+      encodeURIComponent(JSON.stringify(state, null, 2));
+    const downloadAnchorNode = document.createElement("a");
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "battle.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
+
+  /**
+   * Lida com o clique no botão de carregar a batalha.
+   */
+  handleLoadBattle() {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const state = JSON.parse(event.target.result);
+          if (
+            confirm(
+              "Tem certeza que deseja carregar uma nova batalha? Esta ação não pode ser desfeita."
+            )
+          ) {
+            this.battleManager.loadState(state);
+          }
+        } catch (error) {
+          alert("Erro ao carregar o arquivo de batalha.");
+          console.error("Erro ao analisar o JSON:", error);
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+
+  /**
    * Atualiza toda a UI com base no novo estado.
    * @param {object} state - O novo estado da batalha.
    */
@@ -156,9 +211,7 @@ export class UIManager {
     if (creatures.length === 0) {
       container.innerHTML = `
         <div class="empty-state">
-          <p>Nenhum ${
-            type === "player" ? "jogador" : "inimigo"
-          } adicionado</p>
+          <p>Nenhum ${type === "player" ? "jogador" : "inimigo"} adicionado</p>
           <small>Use o painél ${
             type === "player" ? "abaixo" : "acima"
           } para adicionar</small>
