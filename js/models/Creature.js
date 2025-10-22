@@ -52,7 +52,7 @@ export class Creature {
 
     element.innerHTML = `
       <button class="remove-btn" title="Remover">×</button>
-      <button class="duplicate-btn" title="Duplicar">c</button>
+      <button class="duplicate-btn" title="Duplicar">📋</button>
       <div class="creature-name">${this.name}</div>
       <div class="creature-stats">
         <div class="stat-group">
