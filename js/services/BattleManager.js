@@ -122,4 +122,38 @@ export class BattleManager extends EventTarget {
     });
     this.dispatchEvent(event);
   }
+
+  /**
+   * Retorna o estado atual da batalha para salvar.
+   * @returns {object} O estado da batalha.
+   */
+  getStateForSave() {
+    return {
+      players: this.players.map((p) => p.toJSON()),
+      enemies: this.enemies.map((e) => e.toJSON()),
+    };
+  }
+
+  /**
+   * Carrega o estado da batalha a partir de um objeto.
+   * @param {object} state - O estado da batalha a ser carregado.
+   */
+  loadState(state) {
+    if (!state || !state.players || !state.enemies) {
+      console.error("Estado inválido:", state);
+      return;
+    }
+
+    this.players = [];
+    this.enemies = [];
+
+    state.players.forEach((playerData) => {
+      this.addCreature(playerData, "player");
+    });
+    state.enemies.forEach((enemyData) => {
+      this.addCreature(enemyData, "enemy");
+    });
+
+    this.dispatchStateChange();
+  }
 }

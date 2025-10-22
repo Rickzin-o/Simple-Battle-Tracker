@@ -127,4 +127,19 @@ export class Creature {
     this.updateElement(this.element);
     this.bindEvents(); // Re-vincula os eventos após a sobreescrita do innerHTML
   }
+
+  /**
+   * Retorna uma representação JSON do objeto.
+   * @returns {object} Um objeto simples com os dados da criatura.
+   */
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      hp: this.hp,
+      ac: this.ac,
+      currentHp: this.currentHp,
+      type: this.type,
+    };
+  }
 }
