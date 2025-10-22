@@ -53,7 +53,7 @@ export class BattleManager extends EventTarget {
 
   /**
    * Duplica uma carta de criatura da batalha.
-   * @param {number} id - O ID da criatura a ser removida.
+   * @param {number} id - O ID da criatura a ser duplicada.
    * @param {string} type - O tipo da criatura ('player' ou 'enemy').
    */
   duplicateCreature(id, type) {
