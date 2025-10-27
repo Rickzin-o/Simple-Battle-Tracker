@@ -270,6 +270,7 @@ body {
   transition: var(--transition);
   box-shadow: var(--shadow);
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .creature-card:hover {

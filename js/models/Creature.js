@@ -8,7 +8,7 @@ export class Creature {
    * @param {function(id, newHp): void} onHpChange - Callback para mudanças de HP.
    * @param {function(id): void} onRemove - Callback para remoção.
    */
-  constructor(data, { onHpChange, onRemove, onDuplicate }) {
+  constructor(data, { onHpChange, onRemove, onDuplicate, onEdit }) {
     this.id = data.id || Date.now() + Math.random();
     this.name = data.name;
     this.hp = data.hp;
@@ -19,7 +19,8 @@ export class Creature {
     // Callbacks para comunicar com o BattleManager
     this.onHpChange = onHpChange;
     this.onRemove = onRemove;
-    this.onDuplicate = onDuplicate
+    this.onDuplicate = onDuplicate;
+    this.onEdit = onEdit
 
     this.element = this.createElement();
     this.bindEvents();
@@ -84,6 +85,10 @@ export class Creature {
 
     this.element.querySelector(".duplicate-btn").addEventListener("click", () => {
       this.onDuplicate(this.id);
+    });
+
+    this.element.addEventListener("click", () => {
+      this.onEdit(this.id)
     });
 
     const hpInput = this.element.querySelector(".creature-hp");

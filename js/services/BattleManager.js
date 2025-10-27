@@ -25,7 +25,8 @@ export class BattleManager extends EventTarget {
     const creature = new Creature(creatureData, {
       onHpChange: (id, newHp) => this.updateHp(id, newHp),
       onRemove: (id) => this.removeCreature(id, type),
-      onDuplicate: (id) => this.duplicateCreature(id, type)
+      onDuplicate: (id) => this.duplicateCreature(id, type),
+      onEdit: (id) => this.editCreature(id, type)
     });
 
     if (type === "player") {
@@ -84,6 +85,15 @@ export class BattleManager extends EventTarget {
   }
 
   /**
+   * Edita a estatística de uma criatura da batalha.
+   * @param {number} id - O ID da criatura a ser editada.
+   * @param {string} type - O tipo da criatura ('player' ou 'enemy').
+   */
+  editCreature(id, type) {
+    this.dispatchCreatureEdit(id, type)
+  }
+
+  /**
    * Atualiza o HP de uma criatura.
    * @param {number} id - O ID da criatura a ser atualizada.
    * @param {number} newHp - O novo valor de HP.
@@ -121,6 +131,16 @@ export class BattleManager extends EventTarget {
       },
     });
     this.dispatchEvent(event);
+  }
+
+  dispatchCreatureEdit(id, type) {
+    console.log(id)
+    const event = new CustomEvent("creature-edit", {
+      detail: {
+        creatureId: id,
+        creatureType: type
+      },
+    })
   }
 
   /**

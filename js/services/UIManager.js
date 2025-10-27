@@ -60,6 +60,9 @@ export class UIManager {
     this.battleManager.addEventListener("state-change", (e) =>
       this.updateUI(e.detail)
     );
+    this.battleManager.addEventListener("creature-edit", (e) =>
+      this.handleCreatureEdit()
+    );
   }
 
   /**
@@ -187,6 +190,10 @@ export class UIManager {
       reader.readAsText(file);
     };
     input.click();
+  }
+
+  handleCreatureEdit() {
+
   }
 
   /**
