@@ -61,7 +61,7 @@ export class UIManager {
       this.updateUI(e.detail)
     );
     this.battleManager.addEventListener("creature-edit", (e) =>
-      this.handleCreatureEdit()
+      this.handleCreatureEdit(e.detail)
     );
   }
 
@@ -192,8 +192,8 @@ export class UIManager {
     input.click();
   }
 
-  handleCreatureEdit() {
-
+  handleCreatureEdit(state) {
+    console.log(state.creatureId, state.creatureType)
   }
 
   /**

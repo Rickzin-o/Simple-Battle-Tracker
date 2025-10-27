@@ -134,13 +134,13 @@ export class BattleManager extends EventTarget {
   }
 
   dispatchCreatureEdit(id, type) {
-    console.log(id)
     const event = new CustomEvent("creature-edit", {
       detail: {
         creatureId: id,
         creatureType: type
       },
     })
+    this.dispatchEvent(event)
   }
 
   /**
